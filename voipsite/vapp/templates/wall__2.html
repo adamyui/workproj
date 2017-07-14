@@ -1,0 +1,44 @@
+{% extends "header.html" %}
+{% block content %}
+
+<p id= 'nope'></p>
+
+<!--list wall objects-->
+{% for obj in object_listboy %}	
+<div class='row'>
+	<div class='col-sm-12'>
+		<div class='thumbnail'>
+		
+			<div class='caption'>
+				<audio controls>
+					<source src="{{obj.sound.url}}" type="audio/wav">
+  					<source src="{{obj.sound.url}}" type="audio/ogg">
+  					<source src="{{obj.sound.url}}" type="audio/mpeg">
+   					<source src="{{obj.sound.url}}" type="audio/mp4">
+					Your browser does not support the audio element.
+				</audio>
+
+				{% if request.user.username == obj.usersave%}
+
+				<p style="font-size: 10px">Phone Number:<a href= '/{{obj.id}}/'>{{obj.number}}</a></p>
+
+				{% else %}
+
+				<p style="font-size: 10px">title:Title</p>
+				{% endif %}
+
+						
+			</div>
+			
+		</div>
+		
+	</div>
+<!-- <hr/ style='border-color: #92969b'> -->
+</div>
+{% endfor %}
+</div>
+
+
+
+
+{% endblock %}

@@ -42,7 +42,7 @@
 
     </br></br>
 
-  <p>Phone Number:</p>
+<!--   <p>Phone Number:</p>
   <input  id='number'  type= 'number' step='any' value='0' name='number' >
   <p>Identifier:</p>
   <input  id='ident'  type= 'number' step='any' value='0' name='ident' >
@@ -51,11 +51,18 @@
 	<p>Upload:</p>
   <input id= 'soundid' type="file" name="sound" accept='audio/*'></br></br>
   <p>Username:</p>
-  <input  id='usersave'  type= 'text' name='usersave' value='{{ request.user }}' ></br></br>
+  <input  id='usersave'  type= 'text' name='usersave' value='{{ request.user }}' readonly ></br></br> -->
+
+<!--   <p>Title:</p>
+  <input id= 'title' type= 'text' name= 'title'> </br></br>
+  <p>Upload:</p>
+  <input id= 'sound' type="file" name='sound' accept='audio/*'></br></br> -->
+
+  {{form.as_p}}
 
     
 
-		<input id= 'allow' class="btn btn-success" type= 'submit' style="color:#34373a; font-size: 25px; width: 100%" value="post sound"/>
+		<input id= 'allow' class="btn btn-success" type= 'submit' style="font-size: 25px; width: 100%" value="Add Sound"/>
 </form>
 
 

@@ -55,7 +55,7 @@ body{
   /*background-color: #4e5b68;*/
   /*background-color: #91aac4;*/
   /*background-color: #667484;*/
-  background-color: #333c44;
+  background-color: #5f7184;
 
   font-family: 'Roboto',sans-serif;
   /*font-family: 'Nico Moji',sans-serif;*/
@@ -71,13 +71,14 @@ form{
   
   /*width: 100%;*/
   color: #34373a;
+  /*color: #d6e9ff;*/
 }
 h1,h2,h3{
-  color:#5ee6ff;
+  color:#404e5e;
   letter-spacing: 10px;
 }
 p{
-  color: #fff4f7;
+  color: #2a333d;
 }
 svg{
  
@@ -92,6 +93,7 @@ audio{
 #formdiv {
   padding-top: 30px;
   width: 100%;
+  color: #d6e9ff;
 }
 .center_div{
   display:block;
@@ -100,11 +102,12 @@ audio{
   padding:25px;
 }
 .border{
-  border: 2px solid white;
+/*  border: 2px solid white;*/
   border-radius: 5px;
   vertical-align: middle;
   width: 65%;
   margin:0 auto;
+  background-color: #a5c2e2;
 }
 
 /*WALL*/
@@ -153,11 +156,11 @@ audio{
 .btn.btn-success{
   font-family: 'Roboto';
 
-  background-color:#5ee6ff;
+  background-color:#2266a5;
  /* background-color:#87ecff;*/
 /*  color: #7a8187;  */
 /*  color: #fff7f9;*/
-  color: #276fad;
+  color: #cce7ff;
 
 
   border-color: #276fad;
@@ -170,7 +173,7 @@ audio{
   font-family: 'Roboto',sans-serif;
   /*background-color: #a0f0ff;*/
   /*  background-color:#f8ffc6;*/
-  border-color: #fff4f7;
+  
   color: #276fad;
 
   background-color: #00d9ff;
@@ -186,7 +189,7 @@ audio{
   
 }
 .thumbnail{
-  background-color: #2a2c30;
+  background-color: #a5c2e2;
   border-color: #2a2c30;
   border: none;
 

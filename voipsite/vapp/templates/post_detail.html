@@ -3,16 +3,56 @@
 
 
 <div class='col-sm-8 col-sm-offset-2'>
+<div class='thumbnail text-center'>
 <h3>{{ title }}</h3>
-<p>made by:{{ instance.usersave }}</p>
-<audio controls>
+<p style="color: #ffffff">made by:{{ instance.usersave }}</p>
+<a class="btn btn-success" style="color: #ffffff"  href="/create">Add new sound</a><br><br>
+</div><br><br>
+
+
+{% for obj in instance.sounds_set.all %}
+  {% include 'sound_detail.html' %}    
+{% endfor %}
+
+
+
+
+<!-- 					<div class='row'>
+					<div class='col-sm-12'>
+						<div class='thumbnail'>
+						
+							<div class='caption'>
+								<audio controls>
+									<source src="{{obj.sound.url}}" type="audio/wav">
+				  					<source src="{{obj.sound.url}}" type="audio/ogg">
+				  					<source src="{{obj.sound.url}}" type="audio/mpeg">
+				   					<source src="{{obj.sound.url}}" type="audio/mp4">
+									Your browser does not support the audio element.
+								</audio>
+
+							</div>
+							
+						</div>
+						
+					</div>
+
+				</div>
+
+				</div> -->
+
+
+
+
+
+
+<!-- <audio controls>
   		<source src="{{instance.sound.url}}" type="audio/ogg">
   		<source src="{{instance.sound.url}}" type="audio/mpeg">
 		Your browser does not support the audio element.
-</audio><br/>
+</audio><br/> -->
 
 
-<a href="/{{instance.id}}/delete/">Delete</a>
+
 
 
 

@@ -1,5 +1,6 @@
 from django import forms
 from .models import NumObject
+from .models import Sounds
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ValidationError
@@ -39,14 +40,28 @@ class PostForm(forms.ModelForm):
 
 
 	class Meta:
+		model = Sounds
+		fields = [
+		'title',
+		'numobj',
+		'sound',
+
+			
+		]
+
+
+
+
+class NumForm(forms.ModelForm):
+
+	class Meta:
 		model = NumObject
 		fields = [
 		'title',
 		'number',
 		'ident',
-		'sound',
 		'usersave',
-			
+					
 		]
 
 
