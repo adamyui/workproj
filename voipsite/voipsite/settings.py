@@ -38,8 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'vapp',
-    'constrainedfilefield',
+
     'registration',
+    'django_cleanup',
 
 
 

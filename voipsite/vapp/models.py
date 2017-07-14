@@ -16,8 +16,8 @@ class NumObject(models.Model):
 	def __str__(self):
 		return self.title
 
-	# def save(self, *args, **kwargs):
-	# 	super(NumObject,self).save(*args,**kwargs)
+	def save(self, *args, **kwargs):
+		super(NumObject,self).save(*args,**kwargs)
 
 	def get_absolute_url(self):
 		return reverse('posts:detail', kwargs={'id': self.id})
@@ -28,6 +28,12 @@ class Sounds(models.Model):
 	numobj = models.ForeignKey(NumObject)
 	title = models.CharField(max_length=50)
 	sound = models.FileField()
+	
+	def __str__(self):
+		return self.title
+
+	def get_absolute_url(self):
+		return reverse('posts:detail', kwargs={'title': self.title})
 
 
 

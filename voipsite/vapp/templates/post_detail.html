@@ -11,7 +11,7 @@
 
 
 {% for obj in instance.sounds_set.all %}
-  {% include 'sound_detail.html' %}    
+  {% include 'sound_detail.html' with sound=obj %}    
 {% endfor %}
 
 

@@ -1,0 +1,4 @@
+Dependencies
+
+pip install django-cleanup
+pip install django-registration

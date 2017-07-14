@@ -29,10 +29,10 @@ def index(request):
 def post_detail(request,id= None):
 	instance= get_object_or_404(NumObject, id=id)
 	
-
 	context= {
 		'title': instance.number,
 		'instance': instance,
+		
 
 
 	}
@@ -44,7 +44,8 @@ def sound_detail(request,id= None):
 	
 
 	context= {
-		'sound': instance.number,
+		'sound': instancesound.number,
+		'instance': instance,
 	}
 	return render(request,'sound_detail.html',context)
 
@@ -87,10 +88,8 @@ def post_createnum(request):
 
 
 
-
-
-def post_delete(request, id=id):
-	instance= get_object_or_404(Sounds, id=id)
-	instance.delete()
+def post_delete(request, id):
+	sound= get_object_or_404(Sounds, pk=id).delete()
+	
 	return redirect('posts:list')
 # Create your views here.
