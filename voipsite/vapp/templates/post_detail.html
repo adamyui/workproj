@@ -1,18 +1,139 @@
 {% extends "header.html" %}
 {% block content %}
 
+<script type="text/javascript">
 
-<div class='col-sm-8 col-sm-offset-2'>
+// var numkey = 
+
+function populate(numkey,bnum){
+	// console.log(numkey)
+	var numkey= numkey;
+	var bnum= bnum;
+
+	document.getElementById("id_rules-numkey").value= numkey;
+	document.getElementById("id_rules-bnum").value= bnum;
+	console.log(numkey)
+	}
+
+
+
+
+</script>
+
+
+
+
+
+<div >
+<!-- <div class='thumbnail text-center'> -->
+
 <div class='thumbnail text-center'>
-<h3>{{ title }}</h3>
-<p style="color: #ffffff">made by:{{ instance.usersave }}</p>
-<a class="btn btn-success" style="color: #ffffff"  href="/create">Add new sound</a><br><br>
-</div><br><br>
+	<div class="row">
+  		<div class="col-sm-4">
+  		<!-- <h3>{{ title }}</h3> -->
+		<!-- <p style="color: #ffffff">made by:{{ instance.usersave }}</p> -->
+	<form name="" method='POST' action='' enctype='multipart/form-data'>{% csrf_token %}
+		<p>Add Incoming Number</p>
+		<!-- {{incomingform.as_p}} -->
+
+<!-- 		{{incomingform.numkey}}
+		{{incomingform.bnum}} -->
+
+		<select required name="incomingnum-numkey" id="incomingnum-numkey" style="display: none;">
+				<option value='2' selected></option>
+		</select>
+
+		<input type="number" name="incomingnum-bnum" id= 'id_incomingnum-bnum'/>
 
 
-{% for obj in instance.sounds_set.all %}
-  {% include 'sound_detail.html' with sound=obj %}    
-{% endfor %}
+		<input id= '' class="btn btn-success" type= 'submit' style="" value="Add Incoming #"/><br><br>
+	</form>	
+
+
+
+
+		<p>Click on incoming number below to edit rules</p>
+			{% for obj in instance.blacklist_set.all %}
+
+				<li><a onclick="populate('{{obj.numkey}}','{{obj.bnum}}')"><p style="font-size: 20px">{{obj.bnum}}</h2></a></li>
+			{% endfor %}
+
+
+  	</div>
+
+
+<div class='container'>
+	<div class="col-sm-8" style="background-color:lavender;">
+			<form method='POST' action= "/createrules/" enctype='multipart/form-data'>{% csrf_token %}
+
+			<!-- {{form.as_p}} -->
+
+<!-- 			<select required name="rules-numkey" id="id_rules-numkey" >
+				<option value='2' selected></option>
+			</select> -->
+			<input name="rules-numkey" id="id_rules-numkey" style="display: none;">
+			<!-- <p>Bnum</p> -->
+			<input type="number" name="rules-bnum" required id='id_rules-bnum' style="display: none;"/><br><br>
+			<p>What days of the week to apply?</p>
+
+
+			<label for='su'>Sun:</label>
+			<input type="checkbox" name="rules-blocked" id='su' onclick= "getElementById('id_rules-days').value += 'SU,'">
+			<label for='mo'>Mon:</label>
+			<input type="checkbox" name="rules-blocked" id='mo' onclick= "getElementById('id_rules-days').value += 'MO,'">
+			<label for='tu'>Tu:</label>
+			<input type="checkbox" name="rules-blocked" id='tu' onclick= "getElementById('id_rules-days').value += 'TU,'">
+			<label for='we'>W:</label>
+			<input type="checkbox" name="rules-blocked" id='we' onclick= "getElementById('id_rules-days').value += 'WE,'">
+			<label for='fr'>Th:</label>
+			<input type="checkbox" name="rules-blocked" id='th' onclick= "getElementById('id_rules-days').value += 'TH,'">
+			<label for='fr'>F:</label>
+			<input type="checkbox" name="rules-blocked" id='fr' onclick= "getElementById('id_rules-days').value += 'FR,'">
+			<label for='sa'>Sat:</label>
+			<input type="checkbox" name="rules-blocked" id='sa' onclick= "getElementById('id_rules-days').value += 'SA,'"><br>
+
+
+
+
+
+
+
+			<input type="text" name="rules-days" required id= "id_rules-days" maxlength='21'><br><br>
+			<p>Block number?</p>
+			<label for='id_rules-bloacked'>Blocked:</label>
+			<input type="checkbox" name="rules-blocked" id='id_rules-bloacked'>
+
+			<label for='sound'>Play Sound:</label>
+			<input type="checkbox" name="" id='sound'><br><br>
+			<br><br>
+			
+
+
+
+			<input  class="btn btn-success" type= 'submit' style="" value="Add Rules"/>
+			</form>
+
+			<br><br>
+			<!-- <a class="btn btn-success" style="color: #ffffff"  href="/create">Add new sound</a> -->
+
+
+
+
+	</div>
+</div>
+
+</div>
+  
+</div>
+
+
+
+
+
+
+ 
+
+
 
 
 
@@ -59,5 +180,4 @@
 
 
 
-</div>
 {% endblock %}

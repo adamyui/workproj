@@ -21,6 +21,8 @@ urlpatterns = [
 	url(r'^$', views.index, name= 'list'),
 	url(r'^create/$', views.post_create),
 	url(r'^createnum/$', views.post_createnum),
+	# url(r'^createbl/$', views.blacklist_create),
+	url(r'^createrules/$', views.bl_createrules),
 	url(r'^(?P<id>\d+)/$', views.post_detail, name='detail'),
 	url(r'^(?P<id>\d+)/delete/$', views.post_delete, name= 'delete'),
 ]

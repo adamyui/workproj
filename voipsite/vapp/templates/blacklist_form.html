@@ -1,0 +1,32 @@
+{% extends "header.html" %}
+{% block content %}
+
+
+
+
+<!-- <div class= 'center_div'> -->
+<div class='thumbnail text-center'>
+
+<form method='POST' action='' enctype='multipart/form-data'>{% csrf_token %}
+
+<!--   <p>Phone Number:</p> -->
+<!--   <input  id='bnum'  type= 'number' step='any' value='0' name='bnum' > -->
+{{form.as_p}}
+
+<input id= 'allow' class="btn btn-success" type= 'submit' style="font-size: 15px;" value="Add Incoming Number"/>
+</form>
+
+{% for obj in instance.sounds_set.all %}
+  {% include 'sound_detail.html' with sound=obj %} 
+{% endfor %}
+
+
+</div>
+<!-- </div> -->
+
+
+
+
+{% endblock %}
+
+

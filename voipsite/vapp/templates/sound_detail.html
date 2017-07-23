@@ -1,25 +1,98 @@
 
 
+{% load staticfiles %}
+<script src="{% static 'js/howler.js/dist/howler.js' %}"></script>
+<script src="{% static 'js/howler.js/dist/howler.min.js' %}"></script>
+<script src="{% static 'js/howler.js/dist/howler.core.min.js' %}"></script>
+<script src="{% static 'js/howler.js/dist/howler.spatial.min.js' %}"></script>
 
 
 
 			<ul>
-
-				
-				
-					
 					
 						<div class='thumbnail'>
 						
 							<div class='caption'>
 
-								<audio controls>
+									<script type="text/javascript">
+										// var sound = new Howl({
+										// 	src:['{{obj.sound.url}}'],
+										// 	volume: 0.5,});
+
+			
+
+
+
+
+
+
+
+
+
+
+									
+									// var is_paused = true;
+
+									// $('#playS').click(function(){
+									// 	if (is_paused){
+         //    							tracks[currentTrack].play();
+         //    							is_paused = false;
+        	// 						}
+    					// 			});
+
+    								
+    								var howls=[];
+
+    								function play(){
+    									var play = sound.play();
+    									console.log(sound);
+	   								}
+
+
+									function create(src){
+										var sound = new Howl({
+											src:[src],
+											volume: 0.5,
+
+										});
+										howls.push(sound);
+										console.log(howls);
+										var play = sound.play();
+    									console.log(sound);
+										
+										// var play = sound.play();
+																				
+									}
+
+										// var pause = sound.pause(play);
+
+									// function stop(sound){
+									// 	console.log(sound)
+
+									// 	// sound.stop(); 
+
+									// }
+									// function stop(sound){
+									// 	// var sound = new Howl({
+									// 	// 	src:[src],
+									// 	// 	volume: 0.5,
+									// 	// });										
+									// 	stop(sound);
+									// }
+
+										
+									</script>
+								<!-- <div onload= ""></div> -->
+								<a onclick="create('{{obj.sound.url}}')">Play</a>
+								<a onclick="stop()">Stop</a>
+
+<!-- 							<audio controls>
 									<source src="{{obj.sound.url}}" type="audio/wav">
 				  					<source src="{{obj.sound.url}}" type="audio/ogg">
 				  					<source src="{{obj.sound.url}}" type="audio/mpeg">
 				   					<source src="{{obj.sound.url}}" type="audio/mp4">
 									Your browser does not support the audio element.
-								</audio>
+								</audio> -->
 								<a href="/{{sound.id}}/delete/">Delete</a>
 
 							</div>
@@ -28,10 +101,6 @@
 						
 					
 				<!-- <hr/ style='border-color: #92969b'> -->
-				
-				
-				
-
 			</ul>
 				
 
