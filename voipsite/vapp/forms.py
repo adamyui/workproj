@@ -82,10 +82,18 @@ class AddRules(forms.ModelForm):
 	prefix = 'rules'
 	class Meta:
 		model = BlackList
+		exclude = ["numkey"]
 		fields = [
+
 		'numkey',
 		'bnum',
-		'days',
+		'sun',
+		'mon',
+		'tue',
+		'wed',
+		'thurs',
+		'fri',
+		'sat',
 		'blocked',
 		
 

@@ -2,3 +2,5 @@ Dependencies
 
 pip install django-cleanup
 pip install django-registration
+pip install django-braces
+pip install --upgrade django-crispy-forms

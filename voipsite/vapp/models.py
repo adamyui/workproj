@@ -46,6 +46,14 @@ class BlackList(models.Model):
 	numkey = models.ForeignKey(NumObject)
 	bnum = models.IntegerField(null= True)
 	blocked = models.BooleanField(default=False)
-	days = models.CharField(max_length=(7*3))
+	# days = models.CharField(max_length=(7*3))
+	
+	sun = models.BooleanField(default=False)
+	mon = models.BooleanField(default=False)
+	tue = models.BooleanField(default=False)
+	wed = models.BooleanField(default=False)
+	thurs = models.BooleanField(default=False)
+	fri = models.BooleanField(default=False)
+	sat = models.BooleanField(default=False)
 	# sound = models.OneToOneField()
 

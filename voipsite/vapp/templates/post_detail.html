@@ -1,32 +1,43 @@
 {% extends "header.html" %}
 {% block content %}
+{% load crispy_forms_tags %}
+
 
 <script type="text/javascript">
+$(document).ready(function() {
 
-// var numkey = 
+		$(".contact").click(function(ev) { // for each edit contact url
+	        ev.preventDefault(); // prevent navigation
+	        var url = $(this).data("form"); // get the contact form url
+	        console.log(url);
+	        $("#contactModal").load(url, function() { // load the url into the modal
+	            $(this).modal('show'); // display the modal on url load
+	        });
+	        return false; // prevent the click propagation
+	    });
 
-function populate(numkey,bnum){
-	// console.log(numkey)
-	var numkey= numkey;
-	var bnum= bnum;
+	    $('.contact-form').on('submit',function() {
+	        $.ajax({ 
+	            type: $(this).attr('method'), 
+	            url: this.action, 
+	            data: $(this).serialize(),
+	            context: this,
+	            success: function(data, status) {
+	                $('#contactModal').html(data);
+	            }
 
-	document.getElementById("id_rules-numkey").value= numkey;
-	document.getElementById("id_rules-bnum").value= bnum;
-	console.log(numkey)
-	}
+	        });
 
-
-
-
+	        return false;
+	    });
+});
 </script>
 
 
 
 
 
-<div >
-<!-- <div class='thumbnail text-center'> -->
-
+<!-- LEFT SIDE  -->
 <div class='thumbnail text-center'>
 	<div class="row">
   		<div class="col-sm-4">
@@ -35,62 +46,46 @@ function populate(numkey,bnum){
 	<form name="" method='POST' action='' enctype='multipart/form-data'>{% csrf_token %}
 		<p>Add Incoming Number</p>
 		<!-- {{incomingform.as_p}} -->
-
 <!-- 		{{incomingform.numkey}}
 		{{incomingform.bnum}} -->
 
-		<select required name="incomingnum-numkey" id="incomingnum-numkey" style="display: none;">
-				<option value='2' selected></option>
-		</select>
-
+			<select required name="incomingnum-numkey" id="incomingnum-numkey" style="display: none;">
+					<option value='2' selected></option>
+			</select>
 		<input type="number" name="incomingnum-bnum" id= 'id_incomingnum-bnum'/>
-
-
 		<input id= '' class="btn btn-success" type= 'submit' style="" value="Add Incoming #"/><br><br>
 	</form>	
 
 
 
 
-		<p>Click on incoming number below to edit rules</p>
+	<!-- DISPLAY INCOMING NUMBER LIST -->
 			{% for obj in instance.blacklist_set.all %}
+				<li style="list-style-type: none">
 
-				<li><a onclick="populate('{{obj.numkey}}','{{obj.bnum}}')"><p style="font-size: 20px">{{obj.bnum}}</h2></a></li>
-			{% endfor %}
+				<p style="font-size: 20px">{{obj.bnum}}
+
+				<a class="contact" href="#" data-form="{% url 'posts:update_rules' obj.pk %}" title="Edit">edit</a>
+
+				</li>
+				
+			
+			{% endfor %}	 			
 
 
-  	</div>
+		</div>
+
+<!-- RIGHT SIDE -->
 
 
 <div class='container'>
-	<div class="col-sm-8" style="background-color:lavender;">
-			<form method='POST' action= "/createrules/" enctype='multipart/form-data'>{% csrf_token %}
+	<div class="col-sm-8" style="">
+	
 
-			<!-- {{form.as_p}} -->
+<!-- MODAL FORM -->
 
-<!-- 			<select required name="rules-numkey" id="id_rules-numkey" >
-				<option value='2' selected></option>
-			</select> -->
-			<input name="rules-numkey" id="id_rules-numkey" style="display: none;">
-			<!-- <p>Bnum</p> -->
-			<input type="number" name="rules-bnum" required id='id_rules-bnum' style="display: none;"/><br><br>
-			<p>What days of the week to apply?</p>
-
-
-			<label for='su'>Sun:</label>
-			<input type="checkbox" name="rules-blocked" id='su' onclick= "getElementById('id_rules-days').value += 'SU,'">
-			<label for='mo'>Mon:</label>
-			<input type="checkbox" name="rules-blocked" id='mo' onclick= "getElementById('id_rules-days').value += 'MO,'">
-			<label for='tu'>Tu:</label>
-			<input type="checkbox" name="rules-blocked" id='tu' onclick= "getElementById('id_rules-days').value += 'TU,'">
-			<label for='we'>W:</label>
-			<input type="checkbox" name="rules-blocked" id='we' onclick= "getElementById('id_rules-days').value += 'WE,'">
-			<label for='fr'>Th:</label>
-			<input type="checkbox" name="rules-blocked" id='th' onclick= "getElementById('id_rules-days').value += 'TH,'">
-			<label for='fr'>F:</label>
-			<input type="checkbox" name="rules-blocked" id='fr' onclick= "getElementById('id_rules-days').value += 'FR,'">
-			<label for='sa'>Sat:</label>
-			<input type="checkbox" name="rules-blocked" id='sa' onclick= "getElementById('id_rules-days').value += 'SA,'"><br>
+<div class="modal" id="contactModal" style="left: 30%; top:15%; ">
+</div>	
 
 
 
@@ -98,33 +93,45 @@ function populate(numkey,bnum){
 
 
 
-			<input type="text" name="rules-days" required id= "id_rules-days" maxlength='21'><br><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			<!-- <input type="text" name="rules-days" required id= "id_rules-days" maxlength='21'><br><br>
 			<p>Block number?</p>
 			<label for='id_rules-bloacked'>Blocked:</label>
 			<input type="checkbox" name="rules-blocked" id='id_rules-bloacked'>
 
 			<label for='sound'>Play Sound:</label>
 			<input type="checkbox" name="" id='sound'><br><br>
-			<br><br>
-			
+			<br><br> 	 -->	
+			<!-- <input  class="btn btn-success" type= 'submit' style="" value="Add Rules"/> -->
+			<!-- </form>
 
-
-
-			<input  class="btn btn-success" type= 'submit' style="" value="Add Rules"/>
-			</form>
-
-			<br><br>
+			<br><br> -->
 			<!-- <a class="btn btn-success" style="color: #ffffff"  href="/create">Add new sound</a> -->
 
 
+			</div>
 
-
+		</div>
 	</div>
-</div>
 
 </div>
-  
-</div>
+
+	 
+
 
 
 
@@ -171,7 +178,6 @@ function populate(numkey,bnum){
   		<source src="{{instance.sound.url}}" type="audio/mpeg">
 		Your browser does not support the audio element.
 </audio><br/> -->
-
 
 
 
