@@ -4,6 +4,10 @@
 
 
 <script type="text/javascript">
+
+
+
+// OPEN UPDATEVIEW IN MODAL
 $(document).ready(function() {
 
 		$(".contact").click(function(ev) { // for each edit contact url
@@ -31,6 +35,14 @@ $(document).ready(function() {
 	        return false;
 	    });
 });
+
+
+
+
+
+
+
+
 </script>
 
 
@@ -38,21 +50,27 @@ $(document).ready(function() {
 
 
 <!-- LEFT SIDE  -->
-<div class='thumbnail text-center'>
+<!-- <div class='thumbnail col-sm-4'> -->
+<div class='text-center'>
 	<div class="row">
-  		<div class="col-sm-4">
+  		<div class="thumbnail col-sm-4">
   		<!-- <h3>{{ title }}</h3> -->
 		<!-- <p style="color: #ffffff">made by:{{ instance.usersave }}</p> -->
 	<form name="" method='POST' action='' enctype='multipart/form-data'>{% csrf_token %}
 		<p>Add Incoming Number</p>
 		<!-- {{incomingform.as_p}} -->
+
+
 <!-- 		{{incomingform.numkey}}
 		{{incomingform.bnum}} -->
 
+
+
 			<select required name="incomingnum-numkey" id="incomingnum-numkey" style="display: none;">
-					<option value='2' selected></option>
+					<option value='{{instance.id}}' selected></option>
 			</select>
 		<input type="number" name="incomingnum-bnum" id= 'id_incomingnum-bnum'/>
+
 		<input id= '' class="btn btn-success" type= 'submit' style="" value="Add Incoming #"/><br><br>
 	</form>	
 
@@ -64,8 +82,9 @@ $(document).ready(function() {
 				<li style="list-style-type: none">
 
 				<p style="font-size: 20px">{{obj.bnum}}
-
 				<a class="contact" href="#" data-form="{% url 'posts:update_rules' obj.pk %}" title="Edit">edit</a>
+				</p>
+
 
 				</li>
 				

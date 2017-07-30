@@ -1,11 +1,90 @@
 
 {% load crispy_forms_tags %}
 
+<script type="text/javascript">
+  
+
+// CONDITIONAL FORM VARS
+var blocked_conditional_field = $("div.days");
+var times_sun = $("div.sun");
+var times_mon = $("div.mon");
+var times_tue = $("div.tue");
+var times_wed = $("div.wed");
+var times_thu = $("div.thu");
+var times_fri = $("div.fri");
+var times_sat = $("div.sat");
 
 
-<!-- <div class= 'center_div'> -->
-<!-- <div class='thumbnail text-center'> -->
+blocked_conditional_field.hide();
+times_sun.hide();
+times_mon.hide();
+times_tue.hide();
+times_wed.hide();
+times_thu.hide();
+times_fri.hide();
+times_sat.hide();
 
+$("#id_rules-blocked").change(function() {
+    if ($(this).prop('checked')) {
+        blocked_conditional_field.show();
+    } else {
+        blocked_conditional_field.hide();
+    }
+});
+
+$("#id_rules-sun").change(function() {
+    if ($(this).prop('checked')) {
+        times_sun.show();
+    } else {
+        times_sun.hide();
+    }
+});
+
+$("#id_rules-mon").change(function() {
+    if ($(this).prop('checked')) {
+        times_mon.show();
+    } else {
+        times_mon.hide();
+    }
+});
+$("#id_rules-tue").change(function() {
+    if ($(this).prop('checked')) {
+        times_tue.show();
+    } else {
+        times_tue.hide();
+    }
+});
+$("#id_rules-wed").change(function() {
+    if ($(this).prop('checked')) {
+        times_wed.show();
+    } else {
+        times_wed.hide();
+    }
+});
+$("#id_rules-thu").change(function() {
+    if ($(this).prop('checked')) {
+        times_thu.show();
+    } else {
+        times_thu.hide();
+    }
+});
+$("#id_rules-fri").change(function() {
+    if ($(this).prop('checked')) {
+        times_fri.show();
+    } else {
+        times_fri.hide();
+    }
+});
+$("#id_rules-sat").change(function() {
+    if ($(this).prop('checked')) {
+        times_sat.show();
+    } else {
+        times_sat.hide();
+    }
+});
+
+
+</script>
 
 
 
@@ -19,9 +98,21 @@
   </div>
   <div class="modal-body">
        {% csrf_token %}
-       <!-- {{form.as_p}} --> 
-       <p>Number:</p>
+       
+  Number:
+  <br><br>
        {{form.bnum}}
+
+
+  <br>          
+  Block:
+      
+      <input type='checkbox' name='rules-blocked' class='checkboxinput' id='id_rules-blocked'>
+      <!-- {{form.blocked}} -->
+     
+<br>
+<div class='days'>
+
       <p>
        Sun:
        {{form.sun}} |
@@ -40,11 +131,20 @@
        Sat:
        {{form.sat}} |       
       </p>
+</div>
 
-      <p>
-      Blocked:
-      {{form.blocked}}
-      </p>
+
+
+
+
+
+<div class='sun'><p>Sunday Times Blocked:</p>{{form.sun_begin_time}}{{form.sun_end_time}}</div>
+<div class="mon"><p>Monday Times Blocked:</p>{{form.mon_begin_time}}{{form.mon_end_time}}</div>
+<div class="tue"><p>Tuesday Times Blocked:</p>{{form.tue_begin_time}}{{form.tue_end_time}}</div>
+<div class="wed"><p>Wednesday Times Blocked:</p>{{form.wed_begin_time}}{{form.wed_end_time}}</div>
+<div class="thu"><p>Thursday Times Blocked:</p>{{form.thu_begin_time}}{{form.thu_end_time}}</div>
+<div class="fri"><p>Friday Times Blocked:</p>{{form.fri_begin_time}}{{form.fri_end_time}}</div>
+<div class="sat"><p>Saturday Times Blocked:</p>{{form.sat_begin_time}}{{form.sat_end_time}}</div>
 
 
 
@@ -53,38 +153,19 @@
 
 
   </div>
-  <div class="modal-footer">
+    <div class="modal-footer">
        <input class="btn btn-primary" type="submit" value="Save" />
        
-  </div>
+    </div>
 </form>   
 
 
-
-
-
-
-
-
-
-
-<!-- <form method='POST' action='' enctype='multipart/form-data'>{% csrf_token %}
-
-
-  <input  id='bnum'  type= 'number' step='any' value='0' name='bnum' >
-{{form.as_p}}
-
-
-<input id= 'allow' class="btn btn-success" type= 'submit' style="font-size: 15px;" value="Add Incoming Number"/>
-</form> -->
 
 {% for obj in instance.sounds_set.all %}
   {% include 'sound_detail.html' with sound=obj %} 
 {% endfor %}
 
 
-<!-- </div> -->
-<!-- </div> -->
 
 
 

@@ -44,7 +44,7 @@ HEADER*/
 /*MODAL*/
 
 
-.modal {
+/*.modal {
    position: absolute;
    top: 0px;
    right: 100px;
@@ -53,7 +53,7 @@ HEADER*/
    z-index: 10040;
    overflow: auto;
    overflow-y: auto;
-}
+}*/
 
 
 
