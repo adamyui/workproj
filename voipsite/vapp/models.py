@@ -5,7 +5,8 @@ from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.models import User
 from datetime import time 
-
+from django.urls import reverse
+import uuid
 
 
 #User phone numbers object
@@ -27,17 +28,7 @@ class NumObject(models.Model):
 		return reverse('posts:detail', kwargs={'id': self.id})
 
 
-#sounds object
-class Sounds(models.Model):
-	numobj = models.ForeignKey(NumObject)
-	title = models.CharField(max_length=50)
-	sound = models.FileField()
-	
-	def __str__(self):
-		return self.title
 
-	def get_absolute_url(self):
-		return reverse('posts:detail', kwargs={'title': self.title})
 
 
 
@@ -88,29 +79,29 @@ class BlackList(models.Model):
 		)
 
 	# START/END TIME FOR EACH DAY
-	sun_begin_time= models.TimeField(choices=BLOCKED_TIMES_BEGIN, null=True)
-	sun_end_time= models.TimeField(choices= BLOCKED_TIMES_END,null=True)
+	sun_begin_time= models.TimeField(choices=BLOCKED_TIMES_BEGIN, null=True,blank=True)
+	sun_end_time= models.TimeField(choices= BLOCKED_TIMES_END,null=True,blank=True)
 
-	sun_begin_time= models.TimeField(choices=BLOCKED_TIMES_BEGIN, null=True)
-	sun_end_time= models.TimeField(choices= BLOCKED_TIMES_END,null=True)
+	sun_begin_time= models.TimeField(choices=BLOCKED_TIMES_BEGIN, null=True,blank=True)
+	sun_end_time= models.TimeField(choices= BLOCKED_TIMES_END,null=True,blank=True)
 
-	mon_begin_time= models.TimeField(choices=BLOCKED_TIMES_BEGIN, null=True)
-	mon_end_time= models.TimeField(choices= BLOCKED_TIMES_END,null=True)
+	mon_begin_time= models.TimeField(choices=BLOCKED_TIMES_BEGIN, null=True,blank=True)
+	mon_end_time= models.TimeField(choices= BLOCKED_TIMES_END,null=True,blank=True)
 
-	tue_begin_time= models.TimeField(choices=BLOCKED_TIMES_BEGIN, null=True)
-	tue_end_time= models.TimeField(choices= BLOCKED_TIMES_END,null=True)
+	tue_begin_time= models.TimeField(choices=BLOCKED_TIMES_BEGIN, null=True,blank=True)
+	tue_end_time= models.TimeField(choices= BLOCKED_TIMES_END,null=True,blank=True)
 
-	wed_begin_time= models.TimeField(choices=BLOCKED_TIMES_BEGIN, null=True)
-	wed_end_time= models.TimeField(choices= BLOCKED_TIMES_END,null=True)
+	wed_begin_time= models.TimeField(choices=BLOCKED_TIMES_BEGIN, null=True,blank=True)
+	wed_end_time= models.TimeField(choices= BLOCKED_TIMES_END,null=True,blank=True)
 
-	thu_begin_time= models.TimeField(choices=BLOCKED_TIMES_BEGIN, null=True)
-	thu_end_time= models.TimeField(choices= BLOCKED_TIMES_END,null=True)
+	thu_begin_time= models.TimeField(choices=BLOCKED_TIMES_BEGIN, null=True,blank=True)
+	thu_end_time= models.TimeField(choices= BLOCKED_TIMES_END,null=True,blank=True)
 
-	fri_begin_time= models.TimeField(choices=BLOCKED_TIMES_BEGIN, null=True)
-	fri_end_time= models.TimeField(choices= BLOCKED_TIMES_END,null=True)
+	fri_begin_time= models.TimeField(choices=BLOCKED_TIMES_BEGIN, null=True,blank=True)
+	fri_end_time= models.TimeField(choices= BLOCKED_TIMES_END,null=True,blank=True)
 
-	sat_begin_time= models.TimeField(choices=BLOCKED_TIMES_BEGIN, null=True)
-	sat_end_time= models.TimeField(choices= BLOCKED_TIMES_END,null=True)
+	sat_begin_time= models.TimeField(choices=BLOCKED_TIMES_BEGIN, null=True,blank=True)
+	sat_end_time= models.TimeField(choices= BLOCKED_TIMES_END,null=True,blank=True)
 
 	# DAYS CHECKED
 	sun = models.BooleanField(default=False)
@@ -123,4 +114,23 @@ class BlackList(models.Model):
 
 
 	# sound = models.OneToOneField()
+	
+
+	def get_absolute_url(self):
+		return reverse('posts:detail', kwargs={'id': self.numkey.id})
+
+
+
+#sounds object
+class Sounds(models.Model):
+	numobj = models.ForeignKey(BlackList)
+	title = models.CharField(max_length=50)
+	sound = models.FileField()
+	unique_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+	
+	# def __str__(self):
+	# 	return self.title
+
+	def get_absolute_url(self):
+		return reverse('posts:detail', kwargs={'title': self.title})
 

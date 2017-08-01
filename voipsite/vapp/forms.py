@@ -44,9 +44,7 @@ class PostForm(forms.ModelForm):
 		fields = [
 		'title',
 		'numobj',
-		'sound',
-
-			
+		'sound',			
 		]
 
 

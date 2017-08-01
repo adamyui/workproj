@@ -90,7 +90,7 @@ $("#id_rules-sat").change(function() {
 
 <!-- MODAL FORM -->
 
-<!-- {% crispy form %} -->
+
 <form class="well contact-form" method="post" action="{% url 'posts:update_rules' form.instance.pk %}">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal">×</button>
@@ -99,15 +99,15 @@ $("#id_rules-sat").change(function() {
   <div class="modal-body">
        {% csrf_token %}
        
-  Number:
-  <br><br>
+  <h4>Number:</h4>
+  <br>
        {{form.bnum}}
 
 
   <br>          
-  Block:
+  <h4>Block:<input type='checkbox' name='rules-blocked' class='checkboxinput' id='id_rules-blocked'></h4>
       
-      <input type='checkbox' name='rules-blocked' class='checkboxinput' id='id_rules-blocked'>
+      
       <!-- {{form.blocked}} -->
      
 <br>
@@ -138,7 +138,7 @@ $("#id_rules-sat").change(function() {
 
 
 
-<div class='sun'><p>Sunday Times Blocked:</p>{{form.sun_begin_time}}{{form.sun_end_time}}</div>
+<div class='sun'><h4>Sunday Times Blocked:</h4>{{form.sun_begin_time}}{{form.sun_end_time}}</div>
 <div class="mon"><p>Monday Times Blocked:</p>{{form.mon_begin_time}}{{form.mon_end_time}}</div>
 <div class="tue"><p>Tuesday Times Blocked:</p>{{form.tue_begin_time}}{{form.tue_end_time}}</div>
 <div class="wed"><p>Wednesday Times Blocked:</p>{{form.wed_begin_time}}{{form.wed_end_time}}</div>

@@ -1,5 +1,42 @@
 {% extends "header.html" %}
 {% block content %}
+{% load staticfiles %}
+<script src="{% static 'js/howler.js/dist/howler.js' %}"></script>
+<script src="{% static 'js/howler.js/dist/howler.min.js' %}"></script>
+<script src="{% static 'js/howler.js/dist/howler.core.min.js' %}"></script>
+<script src="{% static 'js/howler.js/dist/howler.spatial.min.js' %}"></script>
+
+
+<script type="text/javascript">
+
+				function play(){
+					var play = sound.play();
+					console.log(sound);
+					}
+
+
+				function create(src){
+					var sound = new Howl({
+						src:[src],
+						volume: 0.5,
+
+					});
+					// howls.push(sound);
+					// console.log(howls);
+					var play = sound.play();
+					console.log(sound);
+					
+					// var play = sound.play();
+															
+				}	
+
+
+				</script>
+
+
+
+
+
 
 
 
@@ -25,13 +62,47 @@
 					</div>
 					</div>
 					</div>
-
+		<!-- <a href="/{{obj.id}}/sound_detail/">Library</a> -->
 
 	{% endif %}
 {% endfor %}
 
 
+
+<!-- DISPLAY SOUNDS -->
+
+<h4>My Sound Library</h4>
+
+{% for obj in instance %}
+<ul>
+		
+	<div class='thumbnail'>
+			
+		<div class='caption'>
+
+
+
+		<p style="color:#ffffff">{{obj.title}}</p>
+			<a onclick="create('{{obj.sound.url}}')">Play</a>
+			<!-- {{obj.unique_id}} -->
+
+
+
+
+		</div>
+	</div>
+</ul>
+{% endfor %}
+
+
 </div>
+
+
+
+
+
+
+
 
 
 

@@ -1,12 +1,12 @@
 
-
+{% extends "header.html" %}
 {% load staticfiles %}
 <script src="{% static 'js/howler.js/dist/howler.js' %}"></script>
 <script src="{% static 'js/howler.js/dist/howler.min.js' %}"></script>
 <script src="{% static 'js/howler.js/dist/howler.core.min.js' %}"></script>
 <script src="{% static 'js/howler.js/dist/howler.spatial.min.js' %}"></script>
 
-
+{% for obj in instance.sounds_set.all %}
 
 			<ul>
 					
@@ -103,7 +103,7 @@
 				<!-- <hr/ style='border-color: #92969b'> -->
 			</ul>
 				
-
+{% endfor %}
 
 
 

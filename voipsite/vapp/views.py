@@ -9,7 +9,6 @@ from django.contrib.auth.models import User
 from django.views.generic.edit import UpdateView
 from django.urls import reverse
 from django.core.urlresolvers import reverse_lazy
-
 from braces.views import LoginRequiredMixin
 import json
 
@@ -19,9 +18,11 @@ import json
 def index(request):
 	
 	listboy= NumObject.objects.all()
+	instance= Sounds.objects.all()
 	
 	context= {
 		'object_listboy': listboy,
+		'instance':instance,
 				
 	}
 	return render(request, 'wall.html', context)
@@ -35,7 +36,7 @@ def post_detail(request,id= None):
 	if incomingform.is_valid():
 		instanceIncoming = incomingform.save(commit=False)
 		instanceIncoming.save()
-		return redirect('posts:list')
+		# return redirect('posts:list')
 	
 	context= {
 
@@ -49,8 +50,8 @@ def post_detail(request,id= None):
 	return render(request,'post_detail.html',context)
 
 
-def sound_detail(request,id= None):
-	instance= get_object_or_404(Sounds, id=id)
+def sound_detail(request, id=None):
+	instance= get_object_or_404(NumObject, id=id)
 	
 
 	context= {		
@@ -59,28 +60,12 @@ def sound_detail(request,id= None):
 	return render(request,'sound_detail.html',context)
 
 
-
-
-#create incoming numbers form
-# def blacklist_create(request):
-# 	incomingform= BlacklistForm(request.POST or None, request.FILES or None)
-
-
-# 	if form.is_valid():
-
-# 		instance = form.save(commit=False)
-# 		instance.save()
-# 		return HttpResponseRedirect('/')
-
-	
-# 	context= {
-# 		'form': form,
-# 	}
-# 	return render(request,'blacklist_form.html',context,)
-
 #SOUND UPLOAD VIEW
 def post_create(request):
 	form= PostForm(request.POST or None, request.FILES or None)
+	
+	
+
 
 
 	if form.is_valid():
@@ -92,6 +77,8 @@ def post_create(request):
 	
 	context= {
 		'form': form,
+		
+		
 	}
 	return render(request, 'post_form.html',context,)
 
@@ -172,11 +159,15 @@ class AjaxableResponseMixin(object):
 
 #UPDATE VIEW
 class UpdateRules(AjaxableResponseMixin, UpdateView):
+	
+
+
 	model = BlackList
 	form_class = AddRules	
-	
 	template_name= 'blacklist_form.html'
-	success_url = reverse_lazy('posts:list')
+
+
+
 	
 	
 
